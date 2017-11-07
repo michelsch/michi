@@ -6,8 +6,9 @@
 //  Copyright © 2016 Michel Schoemaker. All rights reserved.
 //
 
-import Cocoa
-
+import UIKit
 class SavedPhraseCell: UITableViewCell {
-
+    
+    @IBOutlet weak var phraseLabel: UILabel!
+   
 }

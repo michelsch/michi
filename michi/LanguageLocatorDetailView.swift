@@ -6,8 +6,12 @@
 //  Copyright © 2016 Michel Schoemaker. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class LanguageLocatorDetailView: UIView {
-
+    
+    var phrases = [AnyObject]()
+    
+    
+    
 }

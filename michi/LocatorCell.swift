@@ -6,8 +6,13 @@
 //  Copyright © 2016 Michel Schoemaker. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class LocatorCell: UICollectionViewCell {
-
+    
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var textLabel: UILabel!
+    
+    var phrases: AnyObject?
+    var locationTitle: String?
 }

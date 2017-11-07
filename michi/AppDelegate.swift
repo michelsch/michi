@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  michi
 //
@@ -8,15 +8,21 @@
 
 import UIKit
 import CoreData
+import Firebase
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // Use Firebase library to configure APIs
+        FIRApp.configure()
+        GMSServices.provideAPIKey("AIzaSyC7rIuFJYYIwd0FrfFAZ-dq5HXKKFldPw0")
+        registerForNotifications(application)
+        //setDailyNotification()
         return true
     }
 
@@ -105,6 +111,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    func registerForNotifications(application: UIApplication) {
+        let notificationSettings = UIUserNotificationSettings(
+            forTypes: [.Sound, .Alert], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+    }
+    
+    func setDailyNotification() {
+        let notification = UILocalNotification()
+        notification.alertBody = "Are you abroad? Check out useful phrases with michi!"
+        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.repeatInterval = .Day
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        let signinVC = SigninViewController()
+        if shortcutItem.type == "Saved" {
+            signinVC.performSegueWithIdentifier("toSaved", sender: nil)
+        }
+    
+        
     }
 
 }
